@@ -1,21 +1,15 @@
 import React from 'react'
-import { createStore } from 'redux'
-import anecdoteReducer from './reducers/anecdoteReducer'
-
-const store = createStore(anecdoteReducer)
+import { vote } from './reducers/anecdoteReducer'
+import { useDispatch, useSelector } from 'react-redux'
 
 const App = () => {
-  const vote = (id) => {
-    store.dispatch({
-      type: 'VOTE',
-      data: { id }
-    })
-  }
+  const dispatch = useDispatch()
+  const anecdotes = useSelector(state => state)
 
   return (
     <div>
       <h2>Anecdotes</h2>
-      {store.getState().map(anecdote =>
+      {anecdotes.map(anecdote =>
         <div key={anecdote.id}>
           <div>
             {anecdote.content}
@@ -23,7 +17,7 @@ const App = () => {
           <div>
             has {anecdote.votes}
 
-            <button onClick={() => vote(anecdote.id)}>vote</button>
+            <button onClick={() => dispatch(vote(anecdote.id))}>vote</button>
           </div>
         </div>
       )}
