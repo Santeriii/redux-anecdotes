@@ -3,10 +3,10 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 
 function store(reducer) {
     return (
-    createStore(
-    reducer,
-    composeWithDevTools()
-    )
+        createStore(
+        reducer,
+        composeWithDevTools()
+        )
     )
 }
 

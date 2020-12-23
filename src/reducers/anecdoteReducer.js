@@ -7,7 +7,8 @@ const anecdotesAtStart = {
   'Premature optimization is the root of all evil.',
   'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.'
   ],
-  notification: 'HI!'
+  notification: 'HI!',
+  filter: 'ALL'
 }
 
 const getId = () => (100000 * Math.random()).toFixed(0)
@@ -23,11 +24,10 @@ const asObject = (anecdote) => {
 const initialState = anecdotesAtStart.anecdotes.map(asObject)
 
 const anecdoteReducer = (state = initialState, action) => {
-  console.log('state now: ', state)
-  console.log('action', action)
   switch (action.type) {
     case 'VOTE':
       const id = action.data.id
+      console.log(id)
       const anecdoteToVote = state.find(a => a.id === id)
       const changedAnecdote = {
         ...anecdoteToVote,
@@ -37,7 +37,7 @@ const anecdoteReducer = (state = initialState, action) => {
         anecdote.id !== id ? anecdote : changedAnecdote
       )
     case 'NEW_ANECDOTE':
-        return [...state, action.data]
+      return [...state, action.data]
     default:
       return state
   }
