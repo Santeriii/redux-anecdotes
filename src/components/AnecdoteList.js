@@ -4,7 +4,6 @@ import { notificationChange } from '../reducers/notificationReducer'
 import { useDispatch, useSelector } from 'react-redux'
 import Notification from './Notification'
 import Filter from './Filter'
-import anecdoteService from '../services/anecdotes'
 
 const AnecdoteList = () => {
     const dispatch = useDispatch()
@@ -24,8 +23,7 @@ const AnecdoteList = () => {
     }, [filter, anecdotes])
 
     useEffect(() => {
-        anecdoteService
-            .getAll().then(anecdotes => dispatch(initializeAnecdotes(anecdotes)))
+        dispatch(initializeAnecdotes())
     }, [dispatch])
 
     const voteFunc = (id, content) => {
