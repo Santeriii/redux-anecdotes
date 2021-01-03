@@ -16,7 +16,8 @@ const AnecdoteList = () => {
     useEffect(() => {
         setFilteredAnecdotes([])
         anecdotes.map(anecdote => {
-            if (anecdote.content.includes(filter)){
+            console.log(anecdote.content)
+            if (anecdote.content === filter){
                 setFilteredAnecdotes(filteredAnecdotes => [...filteredAnecdotes, anecdote])
             }
         })
