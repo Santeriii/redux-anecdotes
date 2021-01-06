@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const baseUrl = 'http://localhost:3001/anecdotes'
+const baseNotificationUrl = 'http://localhost:3001/notification/1'
 
 const getAll = async () => {
     const response = await axios.get(baseUrl)
@@ -30,4 +31,13 @@ const vote = async (id) => {
     return response.data
 }
 
-export default { getAll, createNew, vote }
+const setNotification = async (content) => {
+    const newNotification = {
+        notification: content,
+        id: 1
+    }
+    const response = await axios.put(baseNotificationUrl, newNotification)
+    return response.data
+}
+
+export default { getAll, createNew, vote, setNotification }

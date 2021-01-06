@@ -9,10 +9,11 @@ const Notification = () => {
     borderWidth: 1
   }
   return (
-    <div style={style}>
-      {console.log(notification)}
-      {notification}
-    </div>
+    notification !== '' && (
+      <div style={style}>
+          {notification}
+      </div>
+    )
   )
 }
 
